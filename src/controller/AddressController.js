@@ -17,7 +17,7 @@ module.exports = {
 
     async store(req, res) {
         const { user_id } = req.params
-        const { zipcode, number } = req.body;
+        const { zipcode, street , number } = req.body;
 
         const user = await User.findByPk(user_id);
 
@@ -26,7 +26,8 @@ module.exports = {
         }
 
         const address = await Address.create({ 
-            zipcode, 
+            zipcode,
+            street, 
             number,
             user_id,
         });
