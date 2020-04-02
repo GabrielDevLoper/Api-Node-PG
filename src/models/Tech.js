@@ -1,19 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 
-class User extends Model{
+class Tech extends Model{
     static init(sequelize) {
         super.init({
             name: DataTypes.STRING,
-            email: DataTypes.STRING,
-            
         }, {
-            sequelize
+            sequelize,
+            tableName:'techs'
         })
     }
 
     static associate(models) {
-        //um usuario tem muitos endereços = hasMany
-        this.hasMany(models.Address, { foreignKey: 'user_id', as: 'addresses'});
         /**
          * sempre que tiver relacionamentos de muitos para muitos (N:N)
          * nós iremos utilizar o 'belongsToMany'
@@ -23,10 +20,10 @@ class User extends Model{
          * o paramentro 'through' é o nome da tabela que nos iremos guardar os 
          * dados do nosso relacionamento.
          * 
-         * paramentro 'as' significa quais as tecnologias do usuario.
+         * o paramentro 'as' significa quais usuarios sabem esta tencnologia.
          */
-        this.belongsToMany(models.Tech, {foreignKey:'user_id', through: 'user_techs', as:'techs'})
+        this.belongsToMany(models.User, {foreignKey:'tech_id', through: 'user_techs', as:'users'})
     }
 }
 
-module.exports = User;
+module.exports = Tech;

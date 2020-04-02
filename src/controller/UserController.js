@@ -28,7 +28,7 @@ module.exports = {
             return res.json({message: "User Not found!"})
         }
 
-        return res.send();
+        return res.json();
 
     },
 }
