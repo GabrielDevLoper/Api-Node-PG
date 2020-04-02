@@ -11,6 +11,8 @@ route.delete('/users/:id', UserController.destroy);
 
 //Rotas para endereços
 route.post('/users/:user_id/address', AddressController.store);
+route.get('/users/:user_id/address', AddressController.index);
+
 
 
 

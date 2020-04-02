@@ -11,7 +11,7 @@ class Address extends Model{
     }
 
     static associate(models) {
-        //relacionamento de 1:N, um para muitos
+        //relacionamento de 1:N, um para muitos e um endereço pertence a 1 usuário
         this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user'});
     }
 }
